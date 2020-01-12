@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RestController {
     @GetMapping("/api/servletpath")
     public String goodMorning() {
-        return "Hello World";
+        return "Hello RestController World";
     }
 
     @GetMapping("/api/customlogin")

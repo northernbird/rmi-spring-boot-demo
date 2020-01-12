@@ -19,8 +19,14 @@ class RmiSpringBootDemoApplicationTests {
 	private MockMvc mockMvc;
 
 	@Test
-	public void shouldReturnDefaultMessage() throws Exception {
+	public void shouldMatchServletPath() throws Exception {
 		this.mockMvc.perform(get("/api/servletpath").servletPath("/api/servletpath")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello World")));
+				.andExpect(content().string(containsString("Hello CustomGenericFilter World")));
+	}
+
+	@Test
+	public void shouldSkipFilterForEmptyServletPath() throws Exception {
+		this.mockMvc.perform(get("/api/servletpath")).andExpect(status().isOk())
+				.andExpect(content().string(containsString("Hello RestController World")));
 	}
 }
