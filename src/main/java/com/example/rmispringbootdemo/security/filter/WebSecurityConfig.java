@@ -14,8 +14,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new CustomLoginFilter("/api/customlogin", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(new CustomGenericFilter(), CustomLoginFilter.class)
+        http.addFilterBefore(new CustomAuthFilter("/api/customlogin", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new CustomGenericFilter(), CustomAuthFilter.class)
                 .authorizeRequests()
                 .antMatchers("/api/servletpath")
                 .permitAll()
